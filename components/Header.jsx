@@ -8,7 +8,7 @@ import {
 
 export default function Header() {
   return (
-    <header className="static top-0 z-50 grid grid-cols-3 p-5 bg-white shadow-md md:p-10">
+    <header className="sticky top-0 z-50 grid grid-cols-3 p-5 bg-white shadow-md md:px-10">
       <div className="relative flex items-center h-10 my-auto cursor-pointer">
         <Image
           src="https://links.papareact.com/qd3"
