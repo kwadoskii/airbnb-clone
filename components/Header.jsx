@@ -37,8 +37,8 @@ export default function Header({ placeholder }) {
       pathname: "/search",
       query: {
         location: searchInput,
-        startDate: startDate?.toISOString(),
-        endDate: endDate?.toISOString(),
+        startDate: startDate.toISOString(),
+        endDate: endDate.toISOString(),
         numberOfGuests,
       },
     });
