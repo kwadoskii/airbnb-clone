@@ -1,10 +1,12 @@
 import Head from "next/head";
+
 import Banner from "../components/Banner";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import LargeCard from "../components/LargeCard";
 import MediumCard from "../components/MediumCard";
 import SmallCard from "../components/SmallCard";
+import { server } from "../config/index";
 
 export default function Home({ exploreData, cardsData }) {
   return (
@@ -52,9 +54,7 @@ export default function Home({ exploreData, cardsData }) {
 }
 
 export const getStaticProps = async () => {
-  const exploreData = await fetch("http://localhost:3000/api/explore").then((res) =>
-    res.json()
-  );
+  const exploreData = await fetch(`${server}/api/explore`).then((res) => res.json());
 
   const cardsData = await fetch("https://links.papareact.com/zp1").then((res) =>
     res.json()
