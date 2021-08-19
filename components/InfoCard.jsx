@@ -12,15 +12,17 @@ export default function InfoCard({
   total,
 }) {
   return (
-    <div className="flex py-7 px-2 border-b cursor-pointer hover:opacity-80 hover:shadow-lg pr-4 transition duration-200 ease-out first:border-t">
-      <div className="relative h-24 w-40 md:h-52 md:w-80 flex-shrink-0">
-        <Image src={img} layout="fill" objectFit="cover" className="rounded-2xl" />
+    <div className="flex py-7 px-2 border-b cursor-pointer hover:opacity-90 hover:shadow-lg pr-4 transition duration-200 ease-out border rounded-2xl my-2 hover:scale-100 scale-90 active:bg-gray-50">
+      <div className="relative h-24 w-40 md:h-52 md:w-80 flex-shrink-0 ml-2">
+        <Image src={img} layout="fill" objectFit="cover" className="rounded-xl" />
       </div>
 
       <div className="flex flex-col flex-grow pl-5">
         <div className="flex justify-between">
           <p>{location}</p>
-          <HeartIcon className="cursor-pointer h-7" />
+          <div className="hover:bg-gray-50 hover:rounded-full p-3 flex items-center">
+            <HeartIcon className="cursor-pointer h-7" />
+          </div>
         </div>
 
         <h4 className="text-xl">{title}</h4>

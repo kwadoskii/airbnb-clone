@@ -63,11 +63,11 @@ export default function Header({ placeholder }) {
 
       <div className="flex items-center py-2 border-2 rounded-full md:shadow-sm">
         <input
-          value={searchInput}
+          className="flex-grow w-full pl-5 pr-3 text-sm text-gray-600 placeholder-gray-400 bg-transparent outline-none placeholder-shown:text-center"
           onChange={(e) => setSearchInput(e.target.value)}
-          className="flex-grow w-full pl-5 pr-3 text-sm text-gray-600 placeholder-gray-400 bg-transparent outline-none"
-          type="text"
           placeholder={placeholder || "Start your search"}
+          type="text"
+          value={searchInput}
         />
         <SearchIcon className="hidden h-8 p-2 text-white bg-red-400 rounded-full cursor-pointer md:inline-flex md:mx-2" />
       </div>
