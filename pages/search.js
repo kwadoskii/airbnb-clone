@@ -7,6 +7,7 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import InfoCard from "../components/InfoCard";
 import Map from "../components/Map";
+import { server } from "../config";
 
 export default function Search({ searchResult }) {
   const router = useRouter();
@@ -35,7 +36,7 @@ export default function Search({ searchResult }) {
       <main className="flex relative">
         <section className="flex-grow pt-14 px-6">
           <p className="text-sm">
-            300+ Stays · {range} · {numberOfGuests} number of guests
+            {searchResult.length - 1}+ Stays · {range} · {numberOfGuests} guests
           </p>
 
           <h1 className=" text-3xl lg:text-4xl font-semibold mt-2 mb-6">
@@ -82,10 +83,14 @@ export default function Search({ searchResult }) {
   );
 }
 
-export const getServerSideProps = async () => {
-  const searchResult = await fetch("https://links.papareact.com/isz").then((res) =>
-    res.json()
-  );
+export const getServerSideProps = async ({ query }) => {
+  const searchResult = await fetch(`${server}/api/locations`, {
+    method: "POST",
+    headers: {
+      "Content-type": "application/json; charset=UTF-8",
+    },
+    body: JSON.stringify({ location: query.location }),
+  }).then((res) => res.json());
 
   return {
     props: {
