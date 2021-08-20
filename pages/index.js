@@ -6,7 +6,7 @@ import Header from "../components/Header";
 import LargeCard from "../components/LargeCard";
 import MediumCard from "../components/MediumCard";
 import SmallCard from "../components/SmallCard";
-import { server } from "../config/index";
+import { server } from "../config";
 
 export default function Home({ exploreData, cardsData }) {
   return (
@@ -54,6 +54,7 @@ export default function Home({ exploreData, cardsData }) {
 }
 
 export const getStaticProps = async () => {
+  console.log(server);
   const exploreData = await fetch(`${server}/api/explore`).then((res) => res.json());
 
   const cardsData = await fetch("https://links.papareact.com/zp1").then((res) =>
