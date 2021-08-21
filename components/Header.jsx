@@ -1,17 +1,18 @@
+import { useState } from "react";
 import Image from "next/image";
 import {
-  SearchIcon,
   GlobeAltIcon,
   MenuIcon,
+  SearchIcon,
   UserCircleIcon,
   UsersIcon,
 } from "@heroicons/react/solid";
-import { useState } from "react";
 import { DateRangePicker } from "react-date-range";
+import { format } from "date-fns";
+import { useRouter } from "next/dist/client/router";
 
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
-import { useRouter } from "next/dist/client/router";
 
 export default function Header({ placeholder }) {
   const [searchInput, setSearchInput] = useState("");
@@ -37,8 +38,8 @@ export default function Header({ placeholder }) {
       pathname: "/search",
       query: {
         location: searchInput,
-        startDate: startDate.toISOString(),
-        endDate: endDate.toISOString(),
+        startDate: format(startDate, "dd-MMM-yy"),
+        endDate: format(endDate, "dd-MMM-yy"),
         numberOfGuests,
       },
     });
@@ -48,7 +49,7 @@ export default function Header({ placeholder }) {
   const resetInput = () => setSearchInput("");
 
   return (
-    <header className="sticky top-0 z-50 grid grid-cols-3 p-5 bg-white shadow-md md:px-10">
+    <header className="sticky top-0 z-50 grid grid-cols-3 p-3 bg-white shadow-md md:px-8">
       <div
         onClick={() => router.push("/")}
         className="relative flex items-center h-10 my-auto cursor-pointer"
@@ -69,16 +70,19 @@ export default function Header({ placeholder }) {
           type="text"
           value={searchInput}
         />
-        <SearchIcon className="hidden h-8 p-2 text-white bg-red-400 rounded-full cursor-pointer md:inline-flex md:mx-2" />
+        <SearchIcon
+          className="hidden h-8 p-2 text-white bg-red-400 rounded-full cursor-pointer md:inline-flex md:mx-2"
+          onClick={search}
+        />
       </div>
 
-      <div className="flex items-center space-x-4 justify-end text-gray-500">
+      <div className="flex items-center space-x-4 justify-end text-gray-700">
         <p className="hidden md:inline cursor-pointer">Become a host</p>
-        <GlobeAltIcon className="h-6 cursor-pointer" />
+        <GlobeAltIcon className="h-5 cursor-pointer" />
 
-        <div className="flex items-center space-x-2 border-2 p-2 rounded-full">
-          <MenuIcon className="h-6 cursor-pointer" />
-          <UserCircleIcon className="h-6 cursor-pointer" />
+        <div className="flex items-center space-x-1 border pr-1 pl-3 py-1 rounded-full">
+          <MenuIcon className="h-4 cursor-pointer" />
+          <UserCircleIcon className="h-9 cursor-pointer" />
         </div>
       </div>
 

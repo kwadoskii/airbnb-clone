@@ -11,7 +11,7 @@ export default function Map({ searchResult }) {
 
   const [selectedLocation, setSelectedLocation] = useState({});
   const [viewport, setViewport] = useState({
-    height: "100%",
+    height: "calc(100vh - 40px)",
     latitude: center.latitude,
     longitude: center.longitude,
     width: "100%",
@@ -20,10 +20,10 @@ export default function Map({ searchResult }) {
 
   return (
     <ReactMapGL
-      //   className="fixed top-0"
       mapboxApiAccessToken={process.env.mapbox_key}
       mapStyle="mapbox://styles/kwadoskii/ckselp89s7xl517qu74eqn2yu"
       onViewportChange={(viewport) => setViewport(viewport)}
+      style={{ position: "sticky", top: "0px", marginTop: "-40px" }}
       {...viewport}
     >
       {searchResult.map((result, i) => (
