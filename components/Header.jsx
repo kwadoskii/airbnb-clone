@@ -34,6 +34,8 @@ export default function Header({ placeholder }) {
   };
 
   const search = () => {
+    if (searchInput.trim() === "") return;
+
     router.push({
       pathname: "/search",
       query: {
@@ -51,20 +53,20 @@ export default function Header({ placeholder }) {
   return (
     <header className="sticky top-0 z-50 grid grid-cols-3 p-3 bg-white shadow-md md:px-8">
       <div
-        onClick={() => router.push("/")}
         className="relative flex items-center h-10 my-auto cursor-pointer"
+        onClick={() => router.push("/")}
       >
         <Image
-          src="https://links.papareact.com/qd3"
           layout="fill"
           objectFit="contain"
           objectPosition="left"
+          src="https://links.papareact.com/qd3"
         />
       </div>
 
       <div className="flex items-center py-2 border-2 rounded-full md:shadow-sm">
         <input
-          className="flex-grow w-full pl-5 pr-3 text-sm text-gray-600 placeholder-gray-400 bg-transparent outline-none placeholder-shown:text-center"
+          className="flex-grow w-full pl-5 pr-3 text-sm text-gray-600 placeholder-gray-400 bg-transparent outline-none"
           onChange={(e) => setSearchInput(e.target.value)}
           placeholder={placeholder || "Start your search"}
           type="text"
@@ -89,9 +91,9 @@ export default function Header({ placeholder }) {
       {searchInput && (
         <div className="flex flex-col col-span-3 mx-auto">
           <DateRangePicker
-            ranges={[selectionRange]}
-            onChange={handleSelect}
             minDate={new Date()}
+            onChange={handleSelect}
+            ranges={[selectionRange]}
             rangeColors={["#FD5B61"]}
           />
           <div className="flex items-center border-b mb-4">

@@ -12,12 +12,12 @@ export default function InfoCard({
   total,
 }) {
   return (
-    <div className="flex py-7 px-2 border-b cursor-pointer hover:shadow-lg pr-4 transition duration-200 ease-out border rounded-2xl my-2 hover:scale-100 scale-95 active:bg-gray-50 active:scale-95">
-      <div className="relative h-24 w-40 md:h-52 md:w-80 flex-shrink-0 ml-2">
+    <div className="flex py-2 px-2 border-b cursor-pointer hover:shadow-lg transition duration-200 ease-out border rounded-2xl my-2 hover:scale-100 scale-95 active:bg-gray-50 active:scale-95 md:flex-row flex-col md:py-7 md:px-2 md:pr-4">
+      <div className="relative h-44 mb-2 w-full md:h-52 md:w-80 md:ml-2">
         <Image src={img} layout="fill" objectFit="cover" className="rounded-xl" />
       </div>
 
-      <div className="flex flex-col flex-grow pl-5">
+      <div className="flex flex-col flex-grow px-3 md:pl-5">
         <div className="flex justify-between">
           <p>{location}</p>
           <div className="hover:bg-gray-50 hover:rounded-full p-3 flex items-center">

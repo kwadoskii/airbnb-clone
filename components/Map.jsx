@@ -8,6 +8,7 @@ export default function Map({ searchResult }) {
     longitude: result.long,
   }));
   const center = getCenter(cordinates);
+  const styles = { position: "sticky", top: "40px" };
 
   const [selectedLocation, setSelectedLocation] = useState({});
   const [viewport, setViewport] = useState({
@@ -23,7 +24,7 @@ export default function Map({ searchResult }) {
       mapboxApiAccessToken={process.env.mapbox_key}
       mapStyle="mapbox://styles/kwadoskii/ckselp89s7xl517qu74eqn2yu"
       onViewportChange={(viewport) => setViewport(viewport)}
-      style={{ position: "sticky", top: "0px", marginTop: "-40px" }}
+      style={styles}
       {...viewport}
     >
       {searchResult.map((result, i) => (

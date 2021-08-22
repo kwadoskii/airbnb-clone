@@ -6,12 +6,16 @@
   }
 }
 
-.my-map {
-  /* position: fixed; */
-  display: flex;
-  height: calc(100vh - 92px);
+body {
+  user-select: none;
 }
 
 .my-min-height {
   min-height: calc(100vh - 40px);
+}
+
+@media (max-width: 640px) {
+  .rdrDefinedRangesWrapper {
+    display: none;
+  }
 }

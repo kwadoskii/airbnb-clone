@@ -1,7 +1,6 @@
 import { format } from "date-fns";
 import { useRouter } from "next/dist/client/router";
 import Head from "next/head";
-import { useEffect } from "react";
 
 import Footer from "../components/Footer";
 import Header from "../components/Header";
@@ -13,14 +12,34 @@ export default function Search({ searchResult }) {
   const router = useRouter();
   const { location, startDate, endDate, numberOfGuests } = router.query;
 
-  const formatedStartDate = format(new Date(startDate), "dd MMM yy");
-  const formatedEndDate = format(new Date(endDate), "dd MMM yy");
-  const range = `${formatedStartDate} - ${formatedEndDate}`;
+  const getDateRange = (start, end) => {
+    let currentDate = new Date();
 
-  useEffect(() => {}, []);
+    start = new Date(start);
+    end = new Date(end);
+    let formatedEndDate;
+    let formatedStartDate;
+
+    if (start.getFullYear() === end.getFullYear() && currentDate.getFullYear()) {
+      if (start.getMonth() === end.getMonth()) {
+        formatedStartDate = format(new Date(start), "dd ");
+        formatedEndDate = format(new Date(end), "dd MMM");
+      } else {
+        formatedStartDate = format(new Date(start), "dd MMM");
+        formatedEndDate = format(new Date(end), "dd MMM");
+      }
+    } else {
+      formatedStartDate = format(new Date(start), "dd MMM yy");
+      formatedEndDate = format(new Date(end), "dd MMM yy");
+    }
+
+    return `${formatedStartDate} - ${formatedEndDate}`;
+  };
+
+  const range = getDateRange(startDate, endDate);
 
   return (
-    <div className="">
+    <div>
       <Head>
         <title>
           {location[0].toUpperCase() + location.substr(1)} · Stay · Airbnb - clone
@@ -36,7 +55,7 @@ export default function Search({ searchResult }) {
             {searchResult.length - 1}+ stays · {range} · {numberOfGuests} guests
           </p>
 
-          <h1 className="text-2xl lg:text-3xl font-bold mt-2 mb-6">
+          <h1 className="text-2xl my-2 lg:text-3xl font-bold md:mb-6">
             Stays in {location}
           </h1>
 
@@ -70,13 +89,10 @@ export default function Search({ searchResult }) {
           </div>
         </section>
 
-        {/* map */}
         <section className="hidden xl:flex xl:min-w-[558px]">
-          {/* <div className="pt-1 my-min-height xl:min-w-[558px] top-0 -mt-15"> */}
-          {/* <div className="xl:min-w-[550px] my-map"> */}
-          <Map searchResult={searchResult} />
-          {/* </div> */}
-          {/* </div> */}
+          <div className="my-min-height xl:min-w-[558px] sticky top-0 -mt-9">
+            <Map searchResult={searchResult} />
+          </div>
         </section>
       </main>
 
